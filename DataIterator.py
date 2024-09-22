@@ -31,14 +31,14 @@ class SentinelDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         image = self.data[idx]['image']
-        if self.architecture in ["spacenet8_winner", "imagenet_pretrained"]:
+        if self.architecture in ["spacenet8_pretrained", "imagenet_pretrained"]:
             image = image[:, :, ::-1]
         mask = self.data[idx]['mask']
 
         # Clip and normalize image values
         image = image / 10000.0
 
-        if self.architecture == "spacenet8_winner":
+        if self.architecture == "spacenet8_pretrained":
             image = self.spacenet_transform(image)
         elif self.architecture == "imagenet_pretrained":
             image = self.imagenet_transform(image)
