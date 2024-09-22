@@ -33,7 +33,7 @@ def infer():
             start_time = time.time()
 
             # Forward pass
-            if opt.architecture == "spacenet8_winner":
+            if opt.architecture == "spacenet8_pretrained":
                 feats = model.forward_once(images.float())
                 outputs = model.building_seg_head(feats)
             else:   
@@ -61,11 +61,11 @@ if __name__ == "__main__":
     parser.add_argument("--dataset_path", type=str, default="dataset.pickle", help="dataset pickle file")
     parser.add_argument("--checkpoint", type=str, default="unet_medium.pt", help="pretrained checkpoint state dictionary")
     parser.add_argument("--architecture", type=str, default="unet_medium",
-                        help="unet_tiny|unet_small|unet_medium|unet_large|imagenet_tretrained|spacenet8_winner|opensentinelmap_pretrained")
+                        help="unet_tiny|unet_small|unet_medium|unet_large|imagenet_tretrained|spacenet8_pretrained|opensentinelmap_pretrained")
     opt = parser.parse_args()
 
     # Load model architecture
-    if opt.architecture=="spacenet8_winner":
+    if opt.architecture=="spacenet8_pretrained":
         cfg = update_config("models/base_spacenet.yaml")
         model = get_seg_model(cfg)
     elif opt.architecture=="imagenet_pretrained":
