@@ -27,7 +27,21 @@ pip install segmentation-models-pytorch
 ```
 ### Downloading Checkpoints
 1. Download trained checkpoints from the [Google Drive Link](https://drive.google.com/file/d/1cCnV6z6prRFWQbPzUJkzHaNEZ2firc25/view?usp=drive_link). Decompress it, and allocate under the main `aerial_image_segmentation` folder. 
-2. Download pretrained imagenet checkpoint for HRNet from the [Google Drive Link](https://drive.google.com/file/d/1XL2Z4jEsAqAQpDsim_gyuMQ6MjYeUMyM/view?usp=drive_link). Allocate it under the `aerial_image_segmentation/models` folder.
+2. Download the pretrained imagenet checkpoint for HRNet from the [Google Drive Link](https://drive.google.com/file/d/1XL2Z4jEsAqAQpDsim_gyuMQ6MjYeUMyM/view?usp=drive_link). Allocate it under the `aerial_image_segmentation/models` folder.
+### Running commands
+```bash
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_medium.pt # Baseline inference, refer to the 1st step
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/imagenet_pretrained.pt --architecture imagenet_pretrained # Refer to the 2nd step
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/spacenet8_pretrained.pt --architecture spacenet8_pretrained # Refer to the 3rd step
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/spacenet8_pretrained.pt --architecture opensentinelmap_pretrained # Refer to the 4th step
+
+# Refer to the bonus step for the following commands
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_tiny.pt --architecture unet_tiny # Tiny Unet Model
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_small.pt --architecture unet_small # Small Unet Model
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_medium.pt --architecture unet_medium # Medium Unet Model (Baseline)
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_large.pt --architecture unet_large # Large Unet Model
+```
+
 ## Thought Process and Experiments
 | Experiment | Model  | Pretrained | Initial IOU | Latency (seconds/image) | Note                                         |
 |------------|--------|------------|-------------|-------------------------|----------------------------------------------|
