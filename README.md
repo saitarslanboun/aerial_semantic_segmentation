@@ -48,7 +48,7 @@ We picked this experiment mainly because it was convenient—we used an existing
 ### 3rd Step
 Seeing that ImageNet pretrained weights didn't boost our IOU, we shifted gears to a pretrained HRNet model from the first-place solution of the [SpaceNet8](https://github.com/SpaceNetChallenge/SpaceNet8) challenge. We thought that using weights pretrained on data closer to our target—specifically [WorldView-2](https://earth.esa.int/eogateway/missions/worldview-2) and [WorldView-3](https://earth.esa.int/eogateway/missions/worldview-3) imagery—might help.
 
-This HRNet model was originally trained on extensive SpaceNet datasets (phases 1-7), which included detailed building and land feature segmentations. We modified the model by adding two extra convolutional upsampling layers and fine-tuned it on our dataset, using the same normalization as before. This resulted in an IOU of 0.39 and a processing latency of about 0.7 seconds per image. Unfortunately, the accuracy didn't improve.
+This HRNet model was originally trained on extensive SpaceNet datasets (phases 1-7), which included detailed building and land feature segmentations. We modified the model by adding two extra convolutional upsampling layers and fine-tuned it on our dataset, using the same normalization as before. This resulted in an IOU of 0.39 and a processing latency of about 0.7 seconds per image. The accuracy didn't improve.
 ### 4th Step
 <figure>
   <img src="https://github.com/VisionSystemsInc/open-sentinel-map/blob/main/img/dataset_teaser.png" alt="Example Image">
