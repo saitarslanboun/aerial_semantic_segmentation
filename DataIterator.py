@@ -2,16 +2,6 @@ import torch
 import torchvision
 from torchvision.transforms import functional as F
 
-def collate_fn(batch):
-        return_img, return_msk = [], []
-        for image, mask in batch:
-                if mask.sum() != 0:
-                        return_img.append(image)
-                        return_msk.append(mask)
-        return_img = torch.stack(return_img)
-        return_msk = torch.stack(return_msk)
-        return return_img, return_msk
-
 class SentinelDataset(torch.utils.data.Dataset):
     def __init__(self, data, architecture):
         self.data = data
