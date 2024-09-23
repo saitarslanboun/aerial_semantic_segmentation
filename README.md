@@ -85,9 +85,9 @@ Despite the various strategies employed in the initial four steps of the project
 As an additional bonus experiment, I examined the effect of varying the architectural complexity of the baseline U-Net model. Given the complex task of satellites, I believe, reducing the computational demands of processing this data without significantly sacrificing accuracy would provide a significant convenience for the satellite processing pipeline. To this end, I experimented with three scaled versions of the U-Net architecture by altering the dimensionality of the feature space, to measure how much we can reduce the computational need without a significant accuracy change:
 | Architecture  | Feature Space Changes | IOU  | Latency (seconds/image) |
 |---------------|-----------------------|------|-------------------------|
-| UNet-tiny     | 4x smaller            | 0.48 | 0.06                    |
-| UNet-small    | 2x smaller            | 0.50 (same!) | 0.20 (>2 times faster!)                    |
-| UNet-large    | 2x larger             | 0.49 | 3.00                    |
+| UNet-tiny     | 4x smaller            | 0.48 | ∼ 0.06                    |
+| UNet-small    | 2x smaller            | 0.50 (same!) | ∼ 0.20 (>2 times faster!)                    |
+| UNet-large    | 2x larger             | 0.49 | ∼ 3.00                    |
 
 1. UNet-tiny: This model has a quarter of the baseline's feature space, achieving an IOU of 0.48 in just about 0.06 seconds per image.
 2. UNet-small: Halving the feature space of the baseline model, this variant maintains an IOU of 0.50 but processes images more than twice as fast as the baseline, at approximately 0.2 seconds per image.
