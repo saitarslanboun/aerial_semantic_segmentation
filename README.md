@@ -33,7 +33,7 @@ pip install segmentation-models-pytorch
 python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_medium.pt # Baseline inference, refer to the 1st step
 python inference.py --dataset dataset.pickle --checkpoint checkpoints/imagenet_pretrained.pt --architecture imagenet_pretrained # Refer to the 2nd step
 python inference.py --dataset dataset.pickle --checkpoint checkpoints/spacenet8_pretrained.pt --architecture spacenet8_pretrained # Refer to the 3rd step
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/spacenet8_pretrained.pt --architecture opensentinelmap_pretrained # Refer to the 4th step
+python inference.py --dataset dataset.pickle --checkpoint checkpoints/opensentinelmap_pretrained.pt --architecture opensentinelmap_pretrained # Refer to the 4th step
 
 # Refer to the bonus step for the following commands
 python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_tiny.pt --architecture unet_tiny # Tiny Unet Model
