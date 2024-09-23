@@ -45,10 +45,10 @@ python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_large
 ## Thought Process and Experiments
 | Experiment | Model  | Pretrained | Initial IOU | Latency (seconds/image) | Note                                         |
 |------------|--------|------------|-------------|-------------------------|----------------------------------------------|
-| 1          | UNet   | No         | 0.50        | 0.7                     | Baseline model                               |
-| 2          | UNet++ | Yes        | 0.39        | 1.0                     | Pretrained on 900M ImageNet images           |
-| 3          | HRNet  | Yes        | 0.39        | 0.7                     | Pretrained on SpaceNet challenge data        |
-| 4          | UNet   | No         | 0.35        | -                       | Trained from scratch on Sentinel-2 images    |
+| 1          | UNet   | No         | 0.50        | ∼ 0.7                   | Baseline model                               |
+| 2          | UNet++ | Yes        | 0.39        | ∼ 1.0                   | Pretrained on 900M ImageNet images           |
+| 3          | HRNet  | Yes        | 0.39        | ∼ 0.7                   | Pretrained on SpaceNet challenge data        |
+| 4          | UNet   | Yes        | 0.35        | ∼ 0.7                   | Trained from scratch on Sentinel-2 images    |
 ### Initial Info
 All models are trained for 300 epochs using the Adam optimizer and Binary Cross Entropy Loss, starting with a learning rate of 0.001. If no improvement is seen in 20 epochs, the learning rate is reduced by 0.1. Model latency was evaluated on a single core of Intel's 3rd generation 8 Core processors.
 ### 1st Step
