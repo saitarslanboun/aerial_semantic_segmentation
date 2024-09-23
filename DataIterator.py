@@ -1,6 +1,5 @@
 import torch
 import torchvision
-from torchvision.transforms import functional as F
 
 class SentinelDataset(torch.utils.data.Dataset):
     def __init__(self, data, architecture):
