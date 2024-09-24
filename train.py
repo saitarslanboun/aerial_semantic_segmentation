@@ -172,12 +172,12 @@ if __name__ == "__main__":
                         help="Pretrained weights directory for spacenet8 (valid when architecture is 'spacenet8_pretrained')")
     parser.add_argument("--task", type=str, default="train",
                         help="train|pretrain (only needed for OpenSentinelMap pretraining)")
-    parser.add_argument("--opensentinelmap_pretraining_dataset_path", type=str, default="../dataset",
+    parser.add_argument("--opensentinelmap_pretraining_dataset_path", type=str, default="dataset",
                         help="The OpenSentinelMap dataset path for pretraining")
     parser.add_argument("--opensentinelmap_pretrained_weight", type=str, default="models/opensentinelmap_pretrained_checkpoint.pt",
                         help="The OpenSentinelMap pretraining checkpoint path (valid with 'opensentinelmap_pretrained' architecture)")
     parser.add_argument("--batch_size", type=int, default=8, help="Batch size for training")
-    parser.add_argument("--train_dataset_path", type=str, default="../dataset/dataset.pickle", help="Path to training dataset")
+    parser.add_argument("--train_dataset_path", type=str, default="dataset/dataset.pickle", help="Path to training dataset")
     parser.add_argument("--epoch", type=int, default=300, help="Number of epochs to train")
     opt = parser.parse_args()
 
