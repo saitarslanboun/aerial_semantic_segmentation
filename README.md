@@ -1,6 +1,6 @@
 # Building Segmentation from Aerial Images using Sentinel-2 Satellite Data
 ## Overview
-This project aims to segment buildings from aerial images captured by the European Space Agency's (ESA) Sentinel-2 satellite, which offers images with a pixel resolution of 256x156 at a 10m image resolution. The primary challenge involves developing a semantic segmentation model capable of accurately identifying buildings in varying terrains and under the constraint of a relatively small dataset. The provided dataset has 232 training, and 75 validation samples.
+This project aims to segment buildings from aerial images captured by the European Space Agency's (ESA) Sentinel-2 satellite, which offers images with a pixel resolution of 256x256 at a 10m image resolution. The primary challenge involves developing a semantic segmentation model capable of accurately identifying buildings in varying terrains and under the constraint of a relatively small dataset. The provided dataset has 232 training, and 75 validation samples.
 
 | Dataset        | Samples |
 | -------------- | ------- |
