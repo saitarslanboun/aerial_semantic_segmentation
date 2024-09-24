@@ -177,7 +177,7 @@ if __name__ == "__main__":
     parser.add_argument("--opensentinelmap_pretrained_weight", type=str, default="models/opensentinelmap_pretrained_checkpoint.pt",
                         help="The OpenSentinelMap pretraining checkpoint path (valid with 'opensentinelmap_pretrained' architecture)")
     parser.add_argument("--batch_size", type=int, default=8, help="Batch size for training")
-    parser.add_argument("--train_dataset_path", type=str, default="dataset/dataset.pickle", help="Path to training dataset")
+    parser.add_argument("--train_dataset_path", type=str, default="datasets/dataset.pickle", help="Path to training dataset")
     parser.add_argument("--epoch", type=int, default=300, help="Number of epochs to train")
     opt = parser.parse_args()
 
