@@ -172,7 +172,7 @@ if __name__ == "__main__":
                         help="Pretrained weights directory for spacenet8 (valid when architecture is 'spacenet8_pretrained')")
     parser.add_argument("--task", type=str, default="train",
                         help="train|pretrain (only needed for OpenSentinelMap pretraining)")
-    parser.add_argument("--opensentinelmap_pretraining_dataset_path", type=str, default="dataset",
+    parser.add_argument("--opensentinelmap_pretraining_dataset_path", type=str, default="datasets",
                         help="The OpenSentinelMap dataset path for pretraining")
     parser.add_argument("--opensentinelmap_pretrained_weight", type=str, default="models/opensentinelmap_pretrained_checkpoint.pt",
                         help="The OpenSentinelMap pretraining checkpoint path (valid with 'opensentinelmap_pretrained' architecture)")

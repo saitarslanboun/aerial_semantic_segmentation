@@ -26,20 +26,41 @@ conda install tqdm
 pip install segmentation-models-pytorch
 ```
 ### Downloading Checkpoints
-1. Download trained checkpoints from the [Google Drive Link](https://drive.google.com/file/d/1cCnV6z6prRFWQbPzUJkzHaNEZ2firc25/view?usp=drive_link). Decompress it, and allocate under the main `aerial_image_segmentation` folder. 
-2. Download the pretrained imagenet checkpoint for HRNet from the [Google Drive Link](https://drive.google.com/file/d/1XL2Z4jEsAqAQpDsim_gyuMQ6MjYeUMyM/view?usp=drive_link). Allocate it under the `aerial_image_segmentation/models` folder.
+1. Download trained checkpoints from the [Google Drive Link](https://drive.google.com/file/d/1cCnV6z6prRFWQbPzUJkzHaNEZ2firc25/view?usp=drive_link). Decompress it, and allocate under the main `aerial_image_segmentation` folder.
+2. In order to train spacenet8 dataset pretrained model, download the pretrained imagenet checkpoint for HRNet from the [Google Drive Link](https://drive.google.com/file/d/1XL2Z4jEsAqAQpDsim_gyuMQ6MjYeUMyM/view?usp=drive_link). Allocate it under the `aerial_image_segmentation/models` folder. Additionally, download the pretrained checkpoint on spacenet8 challenge datasets from [here](http://ohhan.net/wordpress/wp-content/uploads/2022/08/best_building.pt), and allocate under the `aerial_image_segmentation/models` folder.
+3. In order to pretrain the default Unet model on [OpenSentinelMap](https://openaccess.thecvf.com/content/CVPR2022W/EarthVision/papers/Johnson_OpenSentinelMap_A_Large-Scale_Land_Use_Dataset_Using_OpenStreetMap_and_Sentinel-2_CVPRW_2022_paper.pdf) dataset, download 2020 [images](https://vsipublic.blob.core.usgovcloudapi.net/vsi-open-sentinel-map/osm_sentinel_imagery_2020.tgz), corresponding [label images](https://vsipublic.blob.core.usgovcloudapi.net/vsi-open-sentinel-map/osm_label_images.tgz), decompress, and allocate under `aerial_image_segmentation/datasets` folder. As the next step, run `aerial_image_segmentation/datasets/prepare_osm_dataset.py` script to prepare file lists to be fed into the pretraining script. Running the `prepare_osm_dataset.py` script with default arguments would prepare the file list text files under `aerial_image_segmentation/datasets` folder. If you would like to change it, refer to the argument parser in the script.
 ### Running commands
 ```bash
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_medium.pt # Baseline inference, refer to the 1st step
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/imagenet_pretrained.pt --architecture imagenet_pretrained # Refer to the 2nd step
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/spacenet8_pretrained.pt --architecture spacenet8_pretrained # Refer to the 3rd step
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/opensentinelmap_pretrained.pt --architecture opensentinelmap_pretrained # Refer to the 4th step
+
+# Refer to the 1st step
+python train.py --dataset datasets/dataset.pickle # Baseline training
+python inference.py --dataset datasets/dataset.pickle --checkpoint checkpoints/unet_medium.pt # Baseline inference
+
+# Refer to the 2nd step
+python train.py --architecture imagenet_pretrained --dataset datasets/dataset.pickle # Training
+python inference.py --dataset datasets/dataset.pickle --checkpoint checkpoints/imagenet_pretrained.pt --architecture imagenet_pretrained # Inference
+
+# Refer to the 3rd step
+python train.py --archietcture spacenet8_pretrained --spacenet8_pretrained_weight models/best_building.pt --dataset datasets/dataset.pickle # Training
+python inference.py --dataset datasets/dataset.pickle --checkpoint checkpoints/spacenet8_pretrained.pt --architecture spacenet8_pretrained # Inference
+
+# Refer to the 4th step
+python train.py --architecture opensentinelmap_pretrained --task pretrain --opensentinelmap_pretraining_dataset_path datasets # Pretraining
+python train.py --architecture opensentinelmap_pretrained --task train --opensentinelmap_pretrained_weight models/opensentinelmap_pretrained_checkpoint.pt --dataset datasets/dataset.pickle # Training
+python inference.py --dataset datasets/dataset.pickle --checkpoint checkpoints/opensentinelmap_pretrained.pt --architecture opensentinelmap_pretrained # Refer to the 4th step
 
 # Refer to the bonus step for the following commands
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_tiny.pt --architecture unet_tiny # Tiny Unet Model
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_small.pt --architecture unet_small # Small Unet Model
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_medium.pt --architecture unet_medium # Medium Unet Model (Baseline)
-python inference.py --dataset dataset.pickle --checkpoint checkpoints/unet_large.pt --architecture unet_large # Large Unet Model
+python train.py --architecture unet_tiny --dataset datasets/dataset.pickle # Training tiny Unet model
+python inference.py --dataset datasets/dataset.pickle --checkpoint checkpoints/unet_tiny.pt --architecture unet_tiny # Tiny Unet inference
+
+python train.py --architecture unet_small --dataset datasets/dataset.pickle # Training small Unet model
+python inference.py --dataset datasets/dataset.pickle --checkpoint checkpoints/unet_small.pt --architecture unet_small # Small Unet inference
+
+python train.py --architecture unet_medium --dataset datasets/dataset.pickle # Training medium Unet model (Baseline)
+python inference.py --dataset datasets/dataset.pickle --checkpoint checkpoints/unet_medium.pt --architecture unet_medium # Medium Unet inference
+
+python train.py --architecture unet_large --dataset datasets/dataset.pickle # Training large Unet model
+python inference.py --dataset datasets/dataset.pickle --checkpoint checkpoints/unet_large.pt --architecture unet_large # Large Unet inference
 ```
 
 ## Thought Process and Experiments
